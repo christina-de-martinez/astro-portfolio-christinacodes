@@ -1,10 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+/*
+Ideas to add--
+
+Now
+Load in my full resume
+Colors, fonts, and other styling buttons - https://tiptap.dev/docs/editor/extensions/functionality/fontfamily // https://tiptap.dev/docs/editor/extensions/functionality/color (maybe do a few themes?)
+Drag and drop images - https://tiptap.dev/docs/editor/extensions/functionality/gapcursor
+Floating menu - https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu
+A custom component or two
+Send to myself (via Resend)
+
+Later
+Slash commands - https://tiptap.dev/docs/examples/experiments/slash-commands
+Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/collaboration with cursor
+*/
 ---
 
 <BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
     <article class="mb-16 sm:mb-24">
-        <div class="max-w-none prose prose-dante sm:prose-lg tiptap"></div>
+        <!-- <div class="max-w-none prose prose-dante sm:prose-lg tiptap-wrapper"></div> -->
+        <div class="max-w-none prose prose-dante tiptap-wrapper"></div>
         <div class="floatingMenu">
             <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
             <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="2">Heading 2</button>
@@ -15,13 +32,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
     import { Editor } from '@tiptap/core';
     import StarterKit from '@tiptap/starter-kit';
+    import { Color } from '@tiptap/extension-color';
+    import TextStyle from '@tiptap/extension-text-style';
+    import FontFamily from '@tiptap/extension-font-family';
     import FloatingMenu from '@tiptap/extension-floating-menu';
 
     const defaultHtml = `<h1>Christina Martinez</h1>
-    <h2>Software Engineer</h2>
-    <p>Start typing...</p>`;
+    <p>Software engineer with a background in digital marketing and project management.</p>
+    <p><em><span style="color: #958DF1">This is interactive! Try typing, adding a new line, etc.</span></em></p>
+    <h2>Experience</h2>
+    <h3>Software Engineer, Logos Bible Software - Jan 2022&ndash;Present</h3>
+    <p>Some stuff</p>
+    <h3>Team Lead, Web Development, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
+    <p>Some stuff</p>
+    <h3>Web Developer, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
+    <p>Some stuff</p>
+    <h3>Marketing Project Coordinator, Logos Bible Software - Jun 2017&ndash;Jan 2020</h3>
+    <p>Some stuff</p>
+    <h2>Main Tech Stack</h2>
+    <ul>
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>TypeScript</li>
+        <li>Node.js</li>
+        <li>Draft.js/Slate.js</li>
+    </ul>
+    <h3>Some familiarity with</h3>
+    <ul>
+        <li>C#</li>
+        <li>MongoDB</li>
+        <li>Express</li>
+        <li>SQL</li>
+        <li>Azure</li>
+    </ul>
+    <h2>Education</h2>
+    <h3>Biola University, 2013-2017</h3>
+    <p>Bachelor of Science in International Business</p>
+    <h2>Languages</h2>
+    <ul>
+        <li>English: native speaker</li>
+        <li>Spanish: limited professional working proficiency</li>
+    </ul>`;
 
-    const editorWrapper = document.querySelector('.tiptap');
+    const editorWrapper = document.querySelector('.tiptap-wrapper');
     const floatingMenu = document.querySelector('.floatingMenu');
 
     const editor = new Editor({
@@ -29,18 +82,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         extensions: [
             StarterKit.configure({
                 heading: {
-                    levels: [1, 2, 3, 4, 5, 6]
+                    levels: [1, 2, 3, 4, 5, 6],
+                    HTMLAttributes: {
+                        class: 'heading'
+                    }
                 }
             }),
             FloatingMenu.configure({
                 element: floatingMenu as HTMLElement
-            })
+            }),
+            TextStyle,
+            Color,
+            FontFamily
         ],
         content: defaultHtml,
         autofocus: true,
         editable: true,
-        injectCSS: false
+        injectCSS: false,
+        editorProps: {
+            attributes: {
+                class: 'h-full'
+            }
+        }
     });
+
+    editor.commands.setFontFamily('Newsreader Variable');
 
     // observe for floating menu buttons
     const observer = new MutationObserver((mutations) => {
@@ -65,3 +131,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         subtree: true
     });
 </script>
+
+<style>
+    .tiptap h1.heading {
+        margin-bottom: 0;
+        border: 2px solid snow;
+    }
+</style>
