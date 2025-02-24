@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { actions } from 'astro:actions';
 
 /*
 Ideas to add--
@@ -20,7 +21,13 @@ Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/colla
 
 <BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
     <article class="mb-16 sm:mb-24">
-        <!-- <div class="max-w-none prose prose-dante sm:prose-lg tiptap-wrapper"></div> -->
+        <form action={actions.send} method="POST" id="emailForm">
+            <input type="email" name="email" placeholder="Your email" required />
+            <button type="submit">Send me a copy</button>
+        </form>
+        <!-- <form action={actions.send} method="POST">
+            <button type="submit">Send email</button>
+        </form> -->
         <div class="max-w-none prose prose-dante tiptap-wrapper"></div>
         <div class="floatingMenu">
             <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
@@ -36,6 +43,9 @@ Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/colla
     import TextStyle from '@tiptap/extension-text-style';
     import FontFamily from '@tiptap/extension-font-family';
     import FloatingMenu from '@tiptap/extension-floating-menu';
+
+    import { actions } from 'astro:actions';
+    console.log('actions from script', actions);
 
     const defaultHtml = `<h1>Christina Martinez</h1>
     <p>Software engineer with a background in digital marketing and project management.</p>
@@ -130,6 +140,36 @@ Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/colla
         childList: true,
         subtree: true
     });
+
+    // document.getElementById('emailForm')?.addEventListener('submit', async (e) => {
+    //     e.preventDefault();
+    //     console.log('e', e);
+    //     const form = e.target;
+
+    //     if (!form) {
+    //         console.error('No form data');
+    //         return;
+    //     }
+    //     const formData = new FormData(form as HTMLFormElement);
+
+    //     try {
+    //         const response = await fetch((form as HTMLFormElement).action, {
+    //             method: (form as HTMLFormElement).method,
+    //             body: formData
+    //         });
+
+    //         if (response.ok) {
+    //             console.log('Form submitted successfully');
+    //             // Handle success (e.g., show a success message)
+    //         } else {
+    //             console.error('Form submission failed');
+    //             // Handle failure (e.g., show an error message)
+    //         }
+    //     } catch (error) {
+    //         console.error('Error submitting form', error);
+    //         // Handle error (e.g., show an error message)
+    //     }
+    // });
 </script>
 
 <style>
