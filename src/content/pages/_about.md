@@ -12,13 +12,13 @@ seo:
 
 **Note!:** This about page is entirely fictional and created for the purpose of showcasing [Dante Astro.js theme functionality](https://justgoodui.com/astro-themes/dante/).
 
-## Ethan Donovan - Web Developer based in Estonia
+## Christina Martinez - Software Engineer based in Northern California
 
 **Greetings!** I'm Ethan Donovan, a passionate web developer residing in the picturesque landscapes of [Estonia](https://en.wikipedia.org/wiki/Estonia). With a keen eye for design and a love for crafting seamless digital experiences, I bring a unique blend of creativity and technical expertise to the world of web development.
 
 ## Skills and Expertise
 
-I specialize in front-end and back-end development, utilizing the latest technologies to build responsive and user-friendly websites. My proficiency includes **HTML**, **CSS**, **JavaScript**, and frameworks such as **Astro.js** for dynamic and interactive user interfaces. On the server side, I'm well-versed in Node.js and have experience with database management systems like MongoDB.
+With a background in digital marketing, project management, and channel management, I bring a unique perspective to software engineering. Since 2020, I’ve worked across web development and full-stack roles, contributing to a product team that serves hundreds of thousands of users. While my expertise leans toward front-end development with **React**, **TypeScript**, **JavaScript**, and more, I have hands-on experience with backend technologies like **SQL**, **C#**, **Node.js**, **Azure**, **Supabase**, and **MongoDB**. Outside of work, I engage with the dev community through my coding-focused Instagram (9,000+ followers) and enjoy building silly little side projects—one of which went viral.
 
 ## Innovation and Problem-Solving
 

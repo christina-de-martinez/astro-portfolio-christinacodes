@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
+    <article class="mb-16 sm:mb-24">
+        <div class="max-w-none prose prose-dante sm:prose-lg tiptap"></div>
+        <div class="floatingMenu">
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="2">Heading 2</button>
+        </div>
+    </article>
+</BaseLayout>
+
+<script>
+    import { Editor } from '@tiptap/core';
+    import StarterKit from '@tiptap/starter-kit';
+    import FloatingMenu from '@tiptap/extension-floating-menu';
+
+    const defaultHtml = `<h1>Christina Martinez</h1>
+    <h2>Software Engineer</h2>
+    <p>Start typing...</p>`;
+
+    const editorWrapper = document.querySelector('.tiptap');
+    const floatingMenu = document.querySelector('.floatingMenu');
+
+    const editor = new Editor({
+        element: editorWrapper ?? undefined,
+        extensions: [
+            StarterKit.configure({
+                heading: {
+                    levels: [1, 2, 3, 4, 5, 6]
+                }
+            }),
+            FloatingMenu.configure({
+                element: floatingMenu as HTMLElement
+            })
+        ],
+        content: defaultHtml,
+        autofocus: true,
+        editable: true,
+        injectCSS: false
+    });
+
+    // observe for floating menu buttons
+    const observer = new MutationObserver((mutations) => {
+        const buttons = document.querySelectorAll('.editor-button');
+        if (buttons.length > 0) {
+            buttons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const level = parseInt((event.currentTarget as HTMLElement)?.dataset?.level ?? '1');
+                    editor
+                        .chain()
+                        .focus()
+                        .toggleHeading({ level: level as 1 | 2 | 3 | 4 | 5 | 6 })
+                        .run();
+                });
+            });
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+</script>
