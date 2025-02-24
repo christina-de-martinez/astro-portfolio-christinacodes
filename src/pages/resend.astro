@@ -21,13 +21,13 @@ Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/colla
 
 <BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
     <article class="mb-16 sm:mb-24">
-        <!-- <form action={actions.send} method="POST" id="emailForm">
+        <form action={actions.send} method="POST" id="emailForm">
             <input type="email" name="email" placeholder="Your email" required />
             <button type="submit">Send me a copy</button>
-        </form> -->
-        <form action={actions.send} method="POST">
-            <button type="submit">Send email</button>
         </form>
+        <!-- <form action={actions.send} method="POST">
+            <button type="submit">Send email</button>
+        </form> -->
         <div class="max-w-none prose prose-dante tiptap-wrapper"></div>
         <div class="floatingMenu">
             <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
