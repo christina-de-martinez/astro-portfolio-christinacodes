@@ -1,180 +1,31 @@
 ---
+import ResendEditor from '../components/ResendEditor.jsx';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { actions } from 'astro:actions';
-
-/*
-Ideas to add--
-
-Now
-Load in my full resume
-Colors, fonts, and other styling buttons - https://tiptap.dev/docs/editor/extensions/functionality/fontfamily // https://tiptap.dev/docs/editor/extensions/functionality/color (maybe do a few themes?)
-Drag and drop images - https://tiptap.dev/docs/editor/extensions/functionality/gapcursor
-Floating menu - https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu
-A custom component or two
-Send to myself (via Resend)
-
-Later
-Slash commands - https://tiptap.dev/docs/examples/experiments/slash-commands
-Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/collaboration with cursor
-*/
+import Button from '../components/Button.astro';
 ---
 
 <BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
     <article class="mb-16 sm:mb-24">
-        <form action={actions.send} method="POST" id="emailForm">
-            <input type="email" name="email" placeholder="Your email" required />
-            <button type="submit">Send me a copy</button>
+        <form action={actions.send} method="POST" id="emailForm" class="w-full">
+            <!-- <input type="email" name="email" placeholder="Your email" required /> -->
+            <div class="w-full flex flex-col md:flex-row gap-4 items-center md:items-end justify-stretch mb-16">
+                <div class="flex flex-col gap-2 w-full md:w-[70%]">
+                    <label for="email" class="text-xs text-main/60"> Email Address </label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="h-9 px-5 py-2 text-sm text-main bg-transparent border border-main rounded-md placeholder:text-main/60 focus:outline-none w-full max-w-xl"
+                        required=""
+                        value=""
+                        placeholder="christina@resend.com"
+                    />
+                </div>
+                <Button type="submit" name="subscribe" class="w-full h-9 sm:w-auto"> Send me a copy </Button>
+            </div>
         </form>
-        <!-- <form action={actions.send} method="POST">
-            <button type="submit">Send email</button>
-        </form> -->
-        <div class="max-w-none prose prose-dante tiptap-wrapper"></div>
-        <div class="floatingMenu">
-            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
-            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="2">Heading 2</button>
-        </div>
+        <ResendEditor client:load />
     </article>
 </BaseLayout>
-
-<script>
-    import { Editor } from '@tiptap/core';
-    import StarterKit from '@tiptap/starter-kit';
-    import { Color } from '@tiptap/extension-color';
-    import TextStyle from '@tiptap/extension-text-style';
-    import FontFamily from '@tiptap/extension-font-family';
-    import FloatingMenu from '@tiptap/extension-floating-menu';
-
-    import { actions } from 'astro:actions';
-    console.log('actions from script', actions);
-
-    const defaultHtml = `<h1>Christina Martinez</h1>
-    <p>Software engineer with a background in digital marketing and project management.</p>
-    <p><em><span style="color: #958DF1">This is interactive! Try typing, adding a new line, etc.</span></em></p>
-    <h2>Experience</h2>
-    <h3>Software Engineer, Logos Bible Software - Jan 2022&ndash;Present</h3>
-    <p>Some stuff</p>
-    <h3>Team Lead, Web Development, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
-    <p>Some stuff</p>
-    <h3>Web Developer, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
-    <p>Some stuff</p>
-    <h3>Marketing Project Coordinator, Logos Bible Software - Jun 2017&ndash;Jan 2020</h3>
-    <p>Some stuff</p>
-    <h2>Main Tech Stack</h2>
-    <ul>
-        <li>JavaScript</li>
-        <li>React</li>
-        <li>TypeScript</li>
-        <li>Node.js</li>
-        <li>Draft.js/Slate.js</li>
-    </ul>
-    <h3>Some familiarity with</h3>
-    <ul>
-        <li>C#</li>
-        <li>MongoDB</li>
-        <li>Express</li>
-        <li>SQL</li>
-        <li>Azure</li>
-    </ul>
-    <h2>Education</h2>
-    <h3>Biola University, 2013-2017</h3>
-    <p>Bachelor of Science in International Business</p>
-    <h2>Languages</h2>
-    <ul>
-        <li>English: native speaker</li>
-        <li>Spanish: limited professional working proficiency</li>
-    </ul>`;
-
-    const editorWrapper = document.querySelector('.tiptap-wrapper');
-    const floatingMenu = document.querySelector('.floatingMenu');
-
-    const editor = new Editor({
-        element: editorWrapper ?? undefined,
-        extensions: [
-            StarterKit.configure({
-                heading: {
-                    levels: [1, 2, 3, 4, 5, 6],
-                    HTMLAttributes: {
-                        class: 'heading'
-                    }
-                }
-            }),
-            FloatingMenu.configure({
-                element: floatingMenu as HTMLElement
-            }),
-            TextStyle,
-            Color,
-            FontFamily
-        ],
-        content: defaultHtml,
-        autofocus: true,
-        editable: true,
-        injectCSS: false,
-        editorProps: {
-            attributes: {
-                class: 'h-full'
-            }
-        }
-    });
-
-    editor.commands.setFontFamily('Newsreader Variable');
-
-    // observe for floating menu buttons
-    const observer = new MutationObserver((mutations) => {
-        const buttons = document.querySelectorAll('.editor-button');
-        if (buttons.length > 0) {
-            buttons.forEach((button) => {
-                button.addEventListener('click', (event) => {
-                    const level = parseInt((event.currentTarget as HTMLElement)?.dataset?.level ?? '1');
-                    editor
-                        .chain()
-                        .focus()
-                        .toggleHeading({ level: level as 1 | 2 | 3 | 4 | 5 | 6 })
-                        .run();
-                });
-            });
-            observer.disconnect();
-        }
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-
-    // document.getElementById('emailForm')?.addEventListener('submit', async (e) => {
-    //     e.preventDefault();
-    //     console.log('e', e);
-    //     const form = e.target;
-
-    //     if (!form) {
-    //         console.error('No form data');
-    //         return;
-    //     }
-    //     const formData = new FormData(form as HTMLFormElement);
-
-    //     try {
-    //         const response = await fetch((form as HTMLFormElement).action, {
-    //             method: (form as HTMLFormElement).method,
-    //             body: formData
-    //         });
-
-    //         if (response.ok) {
-    //             console.log('Form submitted successfully');
-    //             // Handle success (e.g., show a success message)
-    //         } else {
-    //             console.error('Form submission failed');
-    //             // Handle failure (e.g., show an error message)
-    //         }
-    //     } catch (error) {
-    //         console.error('Error submitting form', error);
-    //         // Handle error (e.g., show an error message)
-    //     }
-    // });
-</script>
-
-<style>
-    .tiptap h1.heading {
-        margin-bottom: 0;
-        border: 2px solid snow;
-    }
-</style>
+  
