@@ -52,3 +52,37 @@
     }
     */
 }
+
+.tiptap {
+    cursor: text;
+    padding: 10px 0;
+    margin: 12px 0;
+    & .heading {
+        line-height: 1.1;
+        font-weight: bold;
+        font-family: 'Newsreader Variable', ui-serif, Georgia, 'Cambria', 'Times New Roman', Times, serif;
+    }
+    & h1 {
+        font-size: 48px;
+    }
+    & h2 {
+        font-size: 36px;
+    }
+    & h3 {
+        font-size: 24px;
+    }
+    & h4 {
+        font-size: 20px;
+    }
+    & h5 {
+        font-size: 18px;
+    }
+    & h6 {
+        font-size: 16px;
+    }
+    & p {
+        font-size: 16px;
+        line-height: 1.5;
+        font-family: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+}

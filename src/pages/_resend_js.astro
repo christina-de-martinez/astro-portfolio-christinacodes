@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { actions } from 'astro:actions';
+import Button from '../components/Button.astro';
+import '@fontsource/chilanka';
+import '@fontsource-variable/inter';
+export const prerender = false;
+
+/*
+Ideas to add--
+
+Now
+Load in my full resume
+Colors, fonts, and other styling buttons - https://tiptap.dev/docs/editor/extensions/functionality/fontfamily // https://tiptap.dev/docs/editor/extensions/functionality/color (maybe do a few themes?)
+Drag and drop images - https://tiptap.dev/docs/editor/extensions/functionality/gapcursor
+Floating menu - https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu
+A custom component or two
+When the form is submitted, show a success message instead of whatever it does now
+
+Later
+Slash commands - https://tiptap.dev/docs/examples/experiments/slash-commands
+Realtime editing - https://tiptap.dev/docs/editor/extensions/functionality/collaboration with cursor
+*/
+---
+
+<BaseLayout title={'Resend'} description={'Desc'} image={{ src: '/public/about.jpeg' }} showHeader={false}>
+    <article class="mb-16 sm:mb-24">
+        <form action={actions.send} method="POST" id="emailForm" class="w-full">
+            <!-- <input type="email" name="email" placeholder="Your email" required /> -->
+            <div class="w-full flex flex-col md:flex-row gap-4 items-center md:items-end justify-stretch mb-16">
+                <div class="flex flex-col gap-2 w-full md:w-[70%]">
+                    <label for="email" class="text-xs text-main/60"> Email Address </label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="h-9 px-5 py-2 text-sm text-main bg-transparent border border-main rounded-md placeholder:text-main/60 focus:outline-none w-full max-w-xl"
+                        required=""
+                        value=""
+                        placeholder="christina@resend.com"
+                    />
+                </div>
+                <Button type="submit" name="subscribe" class="w-full h-9 sm:w-auto"> Send me a copy </Button>
+            </div>
+        </form>
+        <div class="toolbar">
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="2">Heading 2</button>
+            <button class="font-button rounded-md bg-stone-600 p-2 m-1">Inter</button>
+            <button class="font-button rounded-md bg-stone-600 p-2 m-1">chilanka</button>
+        </div>
+        <!-- <div class="max-w-none prose prose-dante tiptap-wrapper"></div> -->
+        <div class="tiptap-wrapper"></div>
+        <div class="floatingMenu">
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="1">Heading 1</button>
+            <button class="editor-button rounded-md bg-stone-600 p-2 m-1" data-level="2">Heading 2</button>
+        </div>
+    </article>
+</BaseLayout>
+
+<script>
+    import { Editor } from '@tiptap/core';
+    import StarterKit from '@tiptap/starter-kit';
+    import FontFamily from '@tiptap/extension-font-family';
+    import { Color } from '@tiptap/extension-color';
+    import TextStyle from '@tiptap/extension-text-style';
+    import FloatingMenu from '@tiptap/extension-floating-menu';
+    import '@fontsource/chilanka';
+    import '@fontsource-variable/inter';
+
+    const defaultHtml = `<h1>Christina Martinez</h1>
+    <p>Software engineer with a background in digital marketing and project management.</p>
+    <p><em><span style="color: #958DF1">This is interactive! Try typing, adding a new line, etc.</span></em></p>
+    <h2>Experience</h2>
+    <h3>Software Engineer, Logos Bible Software - Jan 2022&ndash;Present</h3>
+    <p>Some stuff</p>
+    <h3>Team Lead, Web Development, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
+    <p>Some stuff</p>
+    <h3>Web Developer, Logos Bible Software - Jan 2020&ndash;Aug 2022</h3>
+    <p>Some stuff</p>
+    <h3>Marketing Project Coordinator, Logos Bible Software - Jun 2017&ndash;Jan 2020</h3>
+    <p>Some stuff</p>
+    <h2>Main Tech Stack</h2>
+    <ul>
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>TypeScript</li>
+        <li>Node.js</li>
+        <li>Draft.js/Slate.js</li>
+    </ul>
+    <h3>Some familiarity with</h3>
+    <ul>
+        <li>C#</li>
+        <li>MongoDB</li>
+        <li>Express</li>
+        <li>SQL</li>
+        <li>Azure</li>
+    </ul>
+    <h2>Education</h2>
+    <h3>Biola University, 2013-2017</h3>
+    <p>Bachelor of Science in International Business</p>
+    <h2>Languages</h2>
+    <ul>
+        <li>English: native speaker</li>
+        <li>Spanish: limited professional working proficiency</li>
+    </ul>`;
+
+    const editorWrapper = document.querySelector('.tiptap-wrapper');
+    const floatingMenu = document.querySelector('.floatingMenu');
+
+    const editor = new Editor({
+        element: editorWrapper ?? undefined,
+        extensions: [
+            StarterKit.configure({
+                heading: {
+                    levels: [1, 2, 3, 4, 5, 6],
+                    HTMLAttributes: {
+                        class: 'heading'
+                    }
+                }
+            }),
+            FloatingMenu.configure({
+                element: floatingMenu as HTMLElement
+            }),
+            Color,
+            FontFamily.configure({
+                types: ['Chilanka', 'Inter']
+            }),
+            TextStyle
+        ],
+        content: defaultHtml,
+        autofocus: true,
+        editable: true,
+        injectCSS: false,
+        editorProps: {
+            attributes: {
+                class: 'tiptap h-full'
+            }
+        }
+    });
+
+    // editor.commands.setFontFamily('Newsreader Variable');
+
+    // observe for floating menu buttons
+    const observer = new MutationObserver((mutations) => {
+        const buttons = document.querySelectorAll('.editor-button');
+        if (buttons.length > 0) {
+            buttons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const level = parseInt((event.currentTarget as HTMLElement)?.dataset?.level ?? '1');
+                    editor
+                        .chain()
+                        .focus()
+                        .toggleHeading({ level: level as 1 | 2 | 3 | 4 | 5 | 6 })
+                        .run();
+                });
+            });
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    document.querySelectorAll('.font-button').forEach((button) => {
+        button.addEventListener('click', (event) => {
+            const font = 'Chilanka';
+            // const font = event.currentTarget.textContent.trim();
+            editor.chain().focus().setFontFamily(font).run();
+            console.log('run');
+        });
+    });
+    // document.querySelectorAll('.font-button').forEach((button) => {
+    //     button.addEventListener('click', (event) => {
+    //         const font = 'Chilanka';
+    //         // const font = event.currentTarget.textContent.trim();
+    //         console.log('Button clicked, setting font to:', font);
+
+    //         const chain = editor.chain();
+    //         console.log('Chain created:', chain);
+
+    //         const focused = chain.focus();
+    //         console.log('Editor focused:', focused);
+
+    //         const fontSet = focused.setFontFamily(font);
+    //         console.log('Font set:', fontSet);
+
+    //         const result = fontSet.run();
+    //         console.log('Run result:', result);
+    //     });
+    // });
+</script>
+
+<style is:global>
+    /* .tiptap {
+        font-family: 'Inter', sans-serif;
+    }
+    .tiptap .heading {
+        font-family: 'Chilanka', cursive;
+    } */
+    .tiptap h1.heading {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+    }
+    .tiptap h2.heading {
+        font-size: 28px;
+        font-weight: bold;
+        color: #444;
+    }
+    .tiptap h3.heading {
+        font-size: 24px;
+        font-weight: bold;
+        color: #555;
+    }
+    .tiptap h4.heading {
+        font-size: 20px;
+        font-weight: normal;
+        color: #666;
+    }
+    .tiptap h5.heading {
+        font-size: 18px;
+        font-weight: normal;
+        color: #777;
+    }
+    .tiptap h6.heading {
+        font-size: 16px;
+        font-weight: normal;
+        color: #888;
+    }
+    .tiptap p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+    }
+</style>
