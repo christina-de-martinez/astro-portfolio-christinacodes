@@ -40,7 +40,8 @@ export type SiteConfig = {
 const siteConfig: SiteConfig = {
     title: 'Christina Martinez',
     subtitle: 'Software Engineer',
-    description: 'Experienced software developer with a background in digital marketing and project management. Since 2020, I\'ve built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 9,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.',
+    description:
+        "Experienced software developer with a background in digital marketing and project management. Since 2020, I've built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 9,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.",
     image: {
         src: '/dante-preview.jpg',
         alt: 'Dante - Astro.js and Tailwind CSS theme'
@@ -49,29 +50,29 @@ const siteConfig: SiteConfig = {
         {
             text: 'Home',
             href: '/'
-        },
-        {
-            text: 'Projects',
-            href: '/projects'
-        },
-        {
-            text: 'Blog',
-            href: '/blog'
-        },
-        {
-            text: 'Tags',
-            href: '/tags'
         }
+        // {
+        //     text: 'Projects',
+        //     href: '/projects'
+        // },
+        // {
+        //     text: 'Blog',
+        //     href: '/blog'
+        // },
+        // {
+        //     text: 'Tags',
+        //     href: '/tags'
+        // }
     ],
     footerNavLinks: [
         // {
         //     text: 'About',
         //     href: '/about'
         // },
-        {
-            text: 'Contact',
-            href: '/contact'
-        },
+        // {
+        //     text: 'Contact',
+        //     href: '/contact'
+        // },
         {
             text: 'Terms',
             href: '/terms'
@@ -89,15 +90,15 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         // title: 'Hi There & Welcome to My Corner of the Web!',
-        text: "I'm **Christina Martinez**, a web developer at Amazing Studio, dedicated to the realms of collaboration and artificial intelligence. My approach involves embracing intuition, conducting just enough research, and leveraging aesthetics as a catalyst for exceptional products. I have a profound appreciation for top-notch software, visual design, and the principles of product-led growth. Feel free to explore some of my coding endeavors on <a href='https://github.com/christina-de-martinez'>GitHub</a> or follow me on <a href='https://bsky.app/profile/christinacodes.dev'>Bluesky</a>.",
+        text: "I'm **Christina Martinez**, and um... this is awkward. You found my new site before it's ready. So, what now? I guess you can find me on <a href='https://github.com/christina-de-martinez'>GitHub</a> or follow me on <a href='https://bsky.app/profile/christinacodes.dev'>Bluesky</a>.",
         image: {
-            src: '/hero.jpeg',
-            alt: 'A person sitting at a desk in front of a computer'
+            src: '/hero.jpg',
+            alt: 'Christina standing at a balcony overlooking the Mediterranean'
         },
         actions: [
             {
                 text: 'Get in Touch',
-                href: '/contact'
+                href: 'mailto:hi@christinacodes.dev'
             }
         ]
     },

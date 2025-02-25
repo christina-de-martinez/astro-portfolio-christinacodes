@@ -55,12 +55,17 @@
 
 .tiptap {
     cursor: text;
-    padding: 10px 0;
     margin: 12px 0;
     & .heading {
-        line-height: 1.1;
+        line-height: 1.5;
         font-weight: bold;
         font-family: 'Newsreader Variable', ui-serif, Georgia, 'Cambria', 'Times New Roman', Times, serif;
+        margin-top: 8px;
+    }
+    & h1,
+    & h2,
+    & h3 {
+        margin-top: 12px;
     }
     & h1 {
         font-size: 48px;
@@ -84,5 +89,27 @@
         font-size: 16px;
         line-height: 1.5;
         font-family: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+    & hr {
+        margin: 12px 0;
+        border-color: rgba(242, 241, 236, 60%);
+    }
+    & ul,
+    ol {
+        padding: 0 1rem;
+        margin: 0.4rem;
+        list-style: none;
+        & li p {
+            margin-top: 0.25em;
+            margin-bottom: 0.25em;
+        }
+        & li p:before {
+            content: '\2738';
+            margin: 0 0.5em;
+        }
+    }
+    a {
+        border-bottom: 1px dashed white;
+        cursor: pointer;
     }
 }
