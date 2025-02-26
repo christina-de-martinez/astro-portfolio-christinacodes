@@ -10,6 +10,9 @@ import react from '@astrojs/react';
 export default defineConfig({
     output: 'server',
     site: 'https://example.com',
+    redirects: {
+        '/ttt-ception': 'https://inception-tic-tac-toe.lovable.app'
+    },
 
     integrations: [
         mdx(),
