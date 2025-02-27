@@ -9,6 +9,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import { actions } from 'astro:actions';
 import DropdownSelect from './DropdownSelect';
 import { defaultResendHtml } from '../utils/defaultResendHtml';
+import { fontColors, fontFaces } from '../utils/resendData';
 
 const ResendEditor = () => {
     const editor = useEditor({
@@ -97,6 +98,8 @@ const ResendEditor = () => {
         (color) => {
             if (!editor) return;
 
+            const colorName = color.name.toLowerCase();
+
             let colors = {
                 default: '#f1f1f1',
                 purple: '#9333ea',
@@ -108,8 +111,16 @@ const ResendEditor = () => {
                 pink: '#ba4081',
                 gray: '#a8a29e'
             };
-            const colorHex = colors[color] ?? '#f1f1f1';
+            const colorHex = colors[colorName] ?? '#f1f1f1';
             editor.chain().focus().setColor(colorHex).run();
+        },
+        [editor]
+    );
+
+    const handleFontChange = useCallback(
+        (font) => {
+            if (!editor) return;
+            editor.chain().focus().setFontFamily(font.name).run();
         },
         [editor]
     );
@@ -146,7 +157,7 @@ const ResendEditor = () => {
                 </div>
             </form>
             <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-            <div className="control-group">
+            <div className="control-group flex flex-row flex-wrap gap-4 items-center justify-center">
                 <div className="button-group ">
                     <button
                         onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -154,36 +165,9 @@ const ResendEditor = () => {
                     >
                         Toggle bullet list
                     </button>
-                    <button
-                        onClick={() => editor.chain().focus().setFontFamily('Inter').run()}
-                        className={`${editor.isActive('textStyle', { fontFamily: 'Inter' }) ? 'is-active' : ''} ${buttonClasses}`}
-                        data-test-id="inter"
-                    >
-                        Inter
-                    </button>
-                    <button
-                        onClick={() => editor.chain().focus().setFontFamily('serif').run()}
-                        className={`${editor.isActive('textStyle', { fontFamily: 'serif' }) ? 'is-active' : ''} ${buttonClasses}`}
-                        data-test-id="serif"
-                    >
-                        Serif
-                    </button>
-                    <button
-                        onClick={() => editor.chain().focus().setFontFamily('monospace').run()}
-                        className={`${editor.isActive('textStyle', { fontFamily: 'monospace' }) ? 'is-active' : ''} ${buttonClasses}`}
-                        data-test-id="monospace"
-                    >
-                        Monospace
-                    </button>
-                    <button
-                        onClick={() => editor.chain().focus().setFontFamily('"Exo 2"').run()}
-                        className={`${editor.isActive('textStyle', { fontFamily: 'Exo 2' }) ? 'is-active' : ''} ${buttonClasses}`}
-                        data-test-id="exo2"
-                    >
-                        Exo 2
-                    </button>
                 </div>
-                <DropdownSelect onColorChange={handleColorChange} />
+                <DropdownSelect onDataChange={handleColorChange} data={fontColors} showIcon />
+                <DropdownSelect onDataChange={handleFontChange} data={fontFaces} />
             </div>
             <EditorContent editor={editor} />
         </article>

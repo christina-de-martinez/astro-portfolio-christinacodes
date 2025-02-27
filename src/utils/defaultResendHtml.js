@@ -1,6 +1,6 @@
 export const defaultResendHtml = `<h1>Christina Martinez</h1>
 <p>Software engineer with a background in digital marketing and project management.</p>
-<p><em><span style="color: #958DF1">This is interactive! Try typing, changing fonts or colors, adding a new line, etc.</span></em></p>
+<p><em><span style="color: #958DF1">This is interactive! Try typing, changing fonts or colors, etc.</span></em></p>
 <hr />
 <h2>Tech Stack</h2>
 <p><strong>Main tech stack:</strong> JavaScript, React, TypeScript, Node.js, Draft.js/Slate.js</p>
