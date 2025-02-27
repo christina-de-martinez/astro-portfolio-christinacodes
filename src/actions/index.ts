@@ -51,12 +51,14 @@ export const server = {
         <li><strong>Spanish:</strong> limited professional working proficiency (C1)</li>
     </ul>`;
 
+            const emailHtml = formData.get('html')?.toString() ?? html;
+
             const { data, error } = await resend.emails.send({
                 from: 'Christina <hi@updates.christinacodes.dev>',
                 to: [recipient],
                 subject: 'Christina Martinez - Software Engineer',
                 replyTo: 'Christina <christina@algoagency.dev>',
-                html: html
+                html: emailHtml
             });
 
             if (error) {
