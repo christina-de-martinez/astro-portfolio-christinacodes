@@ -7,6 +7,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import Link from '@tiptap/extension-link';
 import { Color } from '@tiptap/extension-color';
 import { EditorContent, useEditor } from '@tiptap/react';
+import { actions } from 'astro:actions';
 
 export default () => {
     const defaultHtml = `<h1>Christina Martinez</h1>
@@ -141,6 +142,31 @@ export default () => {
 
     return (
         <article className="mb-16 sm:mb-24">
+            <form action={actions.send} method="POST" id="emailForm" className="w-full">
+                <div className="w-full flex flex-col md:flex-row gap-4 items-center md:items-end justify-stretch mb-16">
+                    <div className="flex flex-col gap-2 w-full md:w-[70%]">
+                        <label htmlFor="email" className="text-xs text-main/60">
+                            Your email address
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            className="h-9 px-5 py-2 text-sm text-main bg-transparent border border-main rounded-md placeholder:text-main/60 focus:outline-none w-full max-w-xl"
+                            required=""
+                            placeholder="christina@resend.com"
+                        />
+                        <input type="hidden" name="html" id="html" value={editor.getHTML()} />
+                    </div>
+                    <button
+                        type="submit"
+                        name="subscribe"
+                        className="w-full h-9 sm:w-auto inline-flex items-center justify-center px-6 py-2 font-serif leading-tight italic text-main bg-main border border-main rounded-full transition hover:bg-muted"
+                    >
+                        Send me a copy
+                    </button>
+                </div>
+            </form>
             <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
             <div className="control-group">
                 <div className="button-group ">
