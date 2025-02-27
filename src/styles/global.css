@@ -12,6 +12,16 @@
         --color-bg-main: 242 241 236; /* #F2F1EC */
         --color-bg-muted: 234 233 225; /* #EAE9E1 */
         --color-border-main: 23 23 23; /* #171717 */
+
+        --resend-default: #f1f1f1;
+        --resend-purple: #9333ea;
+        --resend-red: #d80000;
+        --resend-yellow: #eab308;
+        --resend-blue: #2563eb;
+        --resend-green: #008a00;
+        --resend-orange: #ffa500;
+        --resend-pink: #ba4081;
+        --resend-gray: #a8a29e;
     }
     html.dark {
         --color-text-main: 242 241 236; /* #F2F1EC */
@@ -112,4 +122,32 @@
         border-bottom: 1px dashed white;
         cursor: pointer;
     }
+}
+
+.purple {
+    color: var(--resend-purple);
+}
+.red {
+    color: var(--resend-red);
+}
+.yellow {
+    color: var(--resend-yellow);
+}
+.blue {
+    color: var(--resend-blue);
+}
+.green {
+    color: var(--resend-green);
+}
+.orange {
+    color: var(--resend-orange);
+}
+.pink {
+    color: var(--resend-pink);
+}
+.gray {
+    color: var(--resend-gray);
+}
+.default {
+    color: var(--resend-default);
 }
