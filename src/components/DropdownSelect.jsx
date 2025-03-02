@@ -6,7 +6,6 @@ import { ChevronUpDownIcon } from '@heroicons/react/16/solid';
 import { CheckIcon } from '@heroicons/react/20/solid';
 
 export default function DropdownSelect({ data, onDataChange, showIcon }) {
-    console.log('data', data, data[0]);
     const [selected, setSelected] = useState(data[0]);
 
     const handleChange = (item) => {
