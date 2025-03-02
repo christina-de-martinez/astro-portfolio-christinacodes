@@ -97,6 +97,7 @@ const ResendEditor = () => {
     });
 
     const buttonClasses = `inline-flex items-center justify-center px-6 py-2 mx-1 font-serif leading-tight italic text-main bg-main border border-main rounded-full transition hover:bg-muted`;
+    const buttonClassesMarks = `inline-flex items-center justify-center px-4 py-2 mx-1 font-serif leading-tight italic text-main bg-main border border-main rounded-full transition hover:bg-muted`;
 
     const handleBlockTypeChange = useCallback(
         (blockType) => {
@@ -175,35 +176,35 @@ const ResendEditor = () => {
                 </div>
             </form>
             <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-            <div className="control-group flex flex-row flex-wrap gap-4 items-center justify-center">
+            <div className="control-group flex flex-row flex-wrap gap-2 items-center justify-start">
                 <div className="button-group ">
                     <button
                         onClick={() => editor.chain().focus().toggleBold().run()}
-                        className={`${editor.isActive('bold') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                        className={`${editor.isActive('bold') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faBold} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleItalic().run()}
-                        className={`${editor.isActive('italic') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                        className={`${editor.isActive('italic') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faItalic} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleStrike().run()}
-                        className={`${editor.isActive('strike') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                        className={`${editor.isActive('strike') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faStrikethrough} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleBulletList().run()}
-                        className={`${editor.isActive('bulletList') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                        className={`${editor.isActive('bulletList') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faListUl} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleHighlight({ color: '#958df1' }).run()}
-                        className={`${editor.isActive('highlight') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                        className={`${editor.isActive('highlight') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faHighlighter} />
                     </button>
