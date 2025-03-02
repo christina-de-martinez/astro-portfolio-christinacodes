@@ -7,12 +7,12 @@ import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import { Color } from '@tiptap/extension-color';
 import { EditorContent, useEditor } from '@tiptap/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBold, faHighlighter, faItalic, faListUl, faStrikethrough } from '@fortawesome/free-solid-svg-icons';
 import { actions } from 'astro:actions';
 import DropdownSelect from './DropdownSelect';
 import { defaultResendHtml } from '../utils/defaultResendHtml';
-import { fontColors, fontFaces } from '../utils/resendData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBold, faHighlighter, faItalic, faListUl, faStrikethrough } from '@fortawesome/free-solid-svg-icons';
+import { blockTypes, fontColors, fontFaces } from '../utils/resendData';
 
 const ResendEditor = () => {
     const editor = useEditor({
@@ -97,6 +97,20 @@ const ResendEditor = () => {
     });
 
     const buttonClasses = `inline-flex items-center justify-center px-6 py-2 mx-1 font-serif leading-tight italic text-main bg-main border border-main rounded-full transition hover:bg-muted`;
+
+    const handleBlockTypeChange = useCallback(
+        (blockType) => {
+            if (!editor) return;
+            if (blockType.name.startsWith('Heading')) {
+                editor.chain().focus().setHeading({ level: blockType.id }).run();
+                return;
+            } else {
+                editor.chain().focus().setParagraph().run();
+                return;
+            }
+        },
+        [editor]
+    );
 
     const handleColorChange = useCallback(
         (color) => {
@@ -194,6 +208,7 @@ const ResendEditor = () => {
                         <FontAwesomeIcon icon={faHighlighter} />
                     </button>
                 </div>
+                <DropdownSelect onDataChange={handleBlockTypeChange} data={blockTypes} />
                 <DropdownSelect onDataChange={handleColorChange} data={fontColors} showIcon />
                 <DropdownSelect onDataChange={handleFontChange} data={fontFaces} />
             </div>
