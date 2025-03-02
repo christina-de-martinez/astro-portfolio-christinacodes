@@ -3,7 +3,7 @@ export const defaultResendHtml = `<h1><em><strong>Christina</strong></em> Martin
 <p><em><span style="color: #958DF1">This is interactive! Try typing, changing fonts or colors, etc.</span></em></p>
 <hr />
 <h2>Tech Stack</h2>
-<p><strong>Main tech stack:</strong> JavaScript, React, TypeScript, Node.js, Draft.js/Slate.js, HTML, CSS, LESS</p>
+<p><strong>Main tech stack:</strong>JavaScript, React, TypeScript, Node.js, Draft.js/Slate.js, HTML, CSS, LESS</p>
 <p><strong>Some familiarity with:</strong> C#, MongoDB, Express, SQL, Azure</p>
 <h2>Experience</h2>
 <h3>Software Engineer, Logos Bible Software - Jan 2022&ndash;Present</h3>
