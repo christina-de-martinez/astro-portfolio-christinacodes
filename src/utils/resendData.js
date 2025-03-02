@@ -40,18 +40,18 @@ export const fontColors = [
 export const fontFaces = [
     {
         id: 1,
-        name: 'Inter'
+        name: 'Newsreader Variable'
     },
     {
         id: 2,
-        name: 'serif'
+        name: 'Inter'
     },
     {
         id: 3,
-        name: 'monospace'
+        name: 'serif'
     },
     {
         id: 4,
-        name: '"Exo 2"'
+        name: 'monospace'
     }
 ];
