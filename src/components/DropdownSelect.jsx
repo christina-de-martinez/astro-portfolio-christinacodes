@@ -16,7 +16,7 @@ export default function DropdownSelect({ data, onDataChange, showIcon }) {
     return (
         <Listbox value={selected} onChange={handleChange}>
             <div className="relative">
-                <ListboxButton className="min-w-60 grid cursor-default grid-cols-1 rounded-md bg-[var(--color-bg-main)] border border-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-300 sm:text-sm/6">
+                <ListboxButton className="min-w-40 grid cursor-default grid-cols-1 rounded-md bg-[var(--color-bg-main)] border border-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-300 sm:text-sm/6">
                     <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6 text-white">
                         {showIcon && <span className={`${selected.name.toLowerCase()} font-extrabold text-xl`}>A</span>}
                         <span className="block truncate">{selected.name}</span>
@@ -26,7 +26,7 @@ export default function DropdownSelect({ data, onDataChange, showIcon }) {
 
                 <ListboxOptions
                     transition
-                    className="min-w-60 absolute z-10 mt-1 max-h-56 overflow-auto rounded-md bg-zinc-900 border border-white py-1 text-base ring-1 shadow-lg ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
+                    className="min-w-40 absolute z-10 mt-1 max-h-56 overflow-auto rounded-md bg-zinc-900 border border-white py-1 text-base ring-1 shadow-lg ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
                 >
                     {data.map((item) => (
                         <ListboxOption

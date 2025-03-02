@@ -3,6 +3,7 @@ import StarterKit from '@tiptap/starter-kit';
 import FontFamily from '@tiptap/extension-font-family';
 import FloatingMenu from '@tiptap/extension-floating-menu';
 import TextStyle from '@tiptap/extension-text-style';
+import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 import { Color } from '@tiptap/extension-color';
 import { EditorContent, useEditor } from '@tiptap/react';
@@ -10,6 +11,8 @@ import { actions } from 'astro:actions';
 import DropdownSelect from './DropdownSelect';
 import { defaultResendHtml } from '../utils/defaultResendHtml';
 import { fontColors, fontFaces } from '../utils/resendData';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBold, faHighlighter, faItalic, faListUl, faStrikethrough } from '@fortawesome/free-solid-svg-icons';
 
 const ResendEditor = () => {
     const editor = useEditor({
@@ -84,7 +87,8 @@ const ResendEditor = () => {
             FloatingMenu,
             Color,
             TextStyle,
-            FontFamily
+            FontFamily,
+            Highlight.configure({ multicolor: true })
         ],
         content: defaultResendHtml,
         autofocus: true,
@@ -160,10 +164,34 @@ const ResendEditor = () => {
             <div className="control-group flex flex-row flex-wrap gap-4 items-center justify-center">
                 <div className="button-group ">
                     <button
-                        onClick={() => editor.chain().focus().toggleBulletList().run()}
-                        className={`${editor.isActive('bulletList') ? 'is-active' : ''} ${buttonClasses}`}
+                        onClick={() => editor.chain().focus().toggleBold().run()}
+                        className={`${editor.isActive('bold') ? 'bg-stone-700' : ''} ${buttonClasses}`}
                     >
-                        Toggle bullet list
+                        <FontAwesomeIcon icon={faBold} />
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleItalic().run()}
+                        className={`${editor.isActive('italic') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                    >
+                        <FontAwesomeIcon icon={faItalic} />
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleStrike().run()}
+                        className={`${editor.isActive('strike') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                    >
+                        <FontAwesomeIcon icon={faStrikethrough} />
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleBulletList().run()}
+                        className={`${editor.isActive('bulletList') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                    >
+                        <FontAwesomeIcon icon={faListUl} />
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleHighlight({ color: '#958df1' }).run()}
+                        className={`${editor.isActive('highlight') ? 'bg-stone-700' : ''} ${buttonClasses}`}
+                    >
+                        <FontAwesomeIcon icon={faHighlighter} />
                     </button>
                 </div>
                 <DropdownSelect onDataChange={handleColorChange} data={fontColors} showIcon />
