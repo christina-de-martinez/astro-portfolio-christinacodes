@@ -180,31 +180,31 @@ const ResendEditor = () => {
                 <div className="button-group ">
                     <button
                         onClick={() => editor.chain().focus().toggleBold().run()}
-                        className={`${editor.isActive('bold') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
+                        className={`${editor.isActive('bold') ? 'bg-stone-400 dark:bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faBold} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleItalic().run()}
-                        className={`${editor.isActive('italic') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
+                        className={`${editor.isActive('italic') ? 'bg-stone-400 dark:bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faItalic} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleStrike().run()}
-                        className={`${editor.isActive('strike') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
+                        className={`${editor.isActive('strike') ? 'bg-stone-400 dark:bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faStrikethrough} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleBulletList().run()}
-                        className={`${editor.isActive('bulletList') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
+                        className={`${editor.isActive('bulletList') ? 'bg-stone-400 dark:bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faListUl} />
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleHighlight({ color: '#958df1' }).run()}
-                        className={`${editor.isActive('highlight') ? 'bg-stone-700' : ''} ${buttonClassesMarks}`}
+                        className={`${editor.isActive('highlight') ? 'bg-stone-400 dark:bg-stone-700' : ''} ${buttonClassesMarks}`}
                     >
                         <FontAwesomeIcon icon={faHighlighter} />
                     </button>
