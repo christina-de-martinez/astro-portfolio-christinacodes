@@ -41,24 +41,24 @@ const siteConfig: SiteConfig = {
     title: 'Christina Martinez',
     subtitle: 'Software Engineer',
     description:
-        "Experienced software developer with a background in digital marketing and project management. Since 2020, I've built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 9,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.",
+        "Experienced software developer with a background in digital marketing and project management. Since 2020, I've built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 8,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.",
     image: {
-        src: '/dante-preview.jpg',
-        alt: 'Dante - Astro.js and Tailwind CSS theme'
+        src: '/hero.jpg',
+        alt: 'Christina standing at a balcony overlooking the Mediterranean'
     },
     headerNavLinks: [
         {
             text: 'Home',
             href: '/'
-        }
+        },
         // {
         //     text: 'Projects',
         //     href: '/projects'
-        // },
-        // {
-        //     text: 'Blog',
-        //     href: '/blog'
-        // },
+        // }
+        {
+            text: 'Today I Learned',
+            href: '/today-i-learned'
+        }
         // {
         //     text: 'Tags',
         //     href: '/tags'
@@ -84,6 +84,18 @@ const siteConfig: SiteConfig = {
             href: 'https://www.instagram.com/christina.codes/'
         },
         {
+            text: 'TikTok',
+            href: 'https://www.tiktok.com/@christina.codes'
+        },
+        {
+            text: 'YouTube',
+            href: 'https://www.youtube.com/@ChristinaCodes'
+        },
+        {
+            text: 'GitHub',
+            href: 'https://github.com/christina-de-martinez'
+        },
+        {
             text: 'Bluesky',
             href: 'https://bsky.app/profile/christinacodes.dev'
         }
@@ -102,11 +114,11 @@ const siteConfig: SiteConfig = {
             }
         ]
     },
-    subscribe: {
-        title: 'Subscribe to Dante Newsletter',
-        text: 'One update per week. All the latest posts directly in your inbox.',
-        formUrl: '#'
-    },
+    // subscribe: {
+    //     title: 'Subscribe to Dante Newsletter',
+    //     text: 'One update per week. All the latest posts directly in your inbox.',
+    //     formUrl: '#'
+    // },
     postsPerPage: 8,
     projectsPerPage: 8
 };
