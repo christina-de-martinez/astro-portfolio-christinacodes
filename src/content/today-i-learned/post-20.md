@@ -1,7 +1,7 @@
 ---
 title: Intl.Collator in JavaScript
 publishDate: 'April 21 2025'
-isFeatured: true
+isFeatured: false
 tags:
   - Web
   - JavaScript

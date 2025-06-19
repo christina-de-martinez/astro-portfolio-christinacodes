@@ -16,6 +16,19 @@ export type Hero = {
     actions?: Link[];
 };
 
+export type Bullet = {
+    tag: string;
+    text: string;
+};
+
+export type Conference = {
+    title?: string;
+    text?: string;
+    image?: Image;
+    actions?: Link[];
+    bullets?: Bullet[];
+};
+
 export type Subscribe = {
     title?: string;
     text?: string;
@@ -32,6 +45,7 @@ export type SiteConfig = {
     footerNavLinks?: Link[];
     socialLinks?: Link[];
     hero?: Hero;
+    conference?: Conference;
     subscribe?: Subscribe;
     postsPerPage?: number;
     projectsPerPage?: number;
@@ -109,12 +123,70 @@ const siteConfig: SiteConfig = {
         },
         actions: [
             {
-                text: 'Follow Me on GitHub',
+                text: 'Follow me on GitHub',
                 href: 'https://github.com/christina-de-martinez'
             },
             {
                 text: 'Find me on Bluesky',
                 href: 'https://bsky.app/profile/christinacodes.dev'
+            }
+        ]
+    },
+    conference: {
+        image: {
+            src: '/christina.jpg',
+            alt: 'A headshot of Christina'
+        },
+        actions: [
+            {
+                text: 'Bluesky',
+                href: 'https://bsky.app/profile/christinacodes.dev'
+            },
+            {
+                text: 'Email',
+                href: 'mailto:christina@christinacodes.dev'
+            },
+            {
+                text: 'GitHub',
+                href: 'https://github.com/christina-de-martinez'
+            },
+            {
+                text: 'Instagram',
+                href: 'https://www.instagram.com/christina.codes/'
+            },
+            {
+                text: 'YouTube',
+                href: 'https://www.youtube.com/@ChristinaCodes'
+            }
+        ],
+        bullets: [
+            {
+                tag: 'Current role',
+                text: 'Software Engineer at Logos Bible Software'
+            },
+            {
+                tag: 'Main stack',
+                text: 'React, TypeScript, JS, Next, Astro, HTML/CSS, C#'
+            },
+            {
+                tag: 'Experience',
+                text: '5 years (MarTech 2020-2022, product eng 2022-present)'
+            },
+            {
+                tag: 'Background',
+                text: 'marketing and project management, business degree from Biola University'
+            },
+            {
+                tag: 'Languages',
+                text: 'English (native), Spanish (C1)'
+            },
+            {
+                tag: 'Location',
+                text: 'Sacramento area, California'
+            },
+            {
+                tag: 'Job status',
+                text: 'Happy, but open to the right opportunity'
             }
         ]
     },

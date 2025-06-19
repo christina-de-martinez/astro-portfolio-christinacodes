@@ -1,7 +1,7 @@
 ---
 title: MCP Servers are a thing now
 publishDate: 'April 10 2025'
-isFeatured: true
+isFeatured: false
 tags:
   - AI
 seo:
