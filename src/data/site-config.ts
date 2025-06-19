@@ -41,7 +41,7 @@ const siteConfig: SiteConfig = {
     title: 'Christina Martinez',
     subtitle: 'Software Engineer',
     description:
-        "Experienced software developer with a background in digital marketing and project management. Since 2020, I've built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 8,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.",
+        "Software developer with a background in digital marketing and project management. Since 2020, I've built scalable web applications as both a web developer and full-stack engineer, contributing to products used by hundreds of thousands of users. Passionate about creating intuitive user experiences, I share coding insights with my 8,000-follower community and build viral side projects. Explore my work, projects, and expertise in modern web development.",
     image: {
         src: '/hero.jpg',
         alt: 'Christina standing at a balcony overlooking the Mediterranean'
@@ -102,15 +102,19 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         // title: 'Hi There & Welcome to My Corner of the Web!',
-        text: "I'm **Christina Martinez**, and um... this is awkward. You found my new site before it's ready. So, what now? I guess you can find me on <a href='https://github.com/christina-de-martinez'>GitHub</a> or follow me on <a href='https://bsky.app/profile/christinacodes.dev'>Bluesky</a>.",
+        text: 'I\'m **Christina Martinez**, a Sacramento-based software engineer. I have a business degree and a background in marketing & project management. I learned to code on nights and weekends before switching over full-time to software development.<br /><br />I started my dev career on a fully-remote front-end MarTech team before becoming the team lead. I led a team of 4 devs remotely, internationally, and across time zones. Then I switched to a product team, shipping beloved features to hundreds of thousands of users.<br /><br />For fun, I like to share <a href="https://www.instagram.com/christina.codes/" target="_blank" rel="noopener noreferrer">my silly side projects</a> with my 8,000+ followers on social media. Check out my <a href="https://www.instagram.com/reel/Cxvwz76vBus/" target="_blank" rel="noopener noreferrer">viral Gen Z slang Babel plugin</a>, my <a href="https://github.com/christina-de-martinez/swift-commits" target="_blank" rel="noopener noreferrer">Taylor Swift command line tool</a>, and my <a href="https://youtube.com/shorts/RLpL2XtsT1I?si=VOK2lpPmkSKEaWiQ" target="_blank" rel="noopener noreferrer">award-winning Worst Video Player</a>.',
         image: {
             src: '/hero.jpg',
             alt: 'Christina standing at a balcony overlooking the Mediterranean'
         },
         actions: [
             {
-                text: 'Get in Touch',
-                href: 'mailto:hi@christinacodes.dev'
+                text: 'Follow Me on GitHub',
+                href: 'https://github.com/christina-de-martinez'
+            },
+            {
+                text: 'Find me on Bluesky',
+                href: 'https://bsky.app/profile/christinacodes.dev'
             }
         ]
     },
