@@ -1,7 +1,7 @@
 ---
 title: Chaining commands in Windows PowerShell
 publishDate: 'Feb 25 2025'
-isFeatured: true
+isFeatured: false
 tags:
   - Windows
   - Terminal

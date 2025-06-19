@@ -5,6 +5,7 @@ tags:
   - iOS
   - Swift
   - Apple
+isFeatured: true
 seo:
   image:
     src: '/post-2.jpg'

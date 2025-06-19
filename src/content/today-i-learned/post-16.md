@@ -1,7 +1,7 @@
 ---
 title: VSCode has a timeline feature
 publishDate: 'Mar 14 2025'
-isFeatured: true
+isFeatured: false
 tags:
   - VSCode
 seo:

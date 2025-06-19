@@ -4,6 +4,7 @@ publishDate: 'Jan 20 2025'
 tags:
   - SQL
   - Backend
+isFeatured: true
 seo:
   image:
     src: '/post-2.jpg'
